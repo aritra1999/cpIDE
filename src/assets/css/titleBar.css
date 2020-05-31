@@ -1,0 +1,99 @@
+.topBar {
+    display: grid;
+    grid-template-columns: 50px auto 100px;
+}
+
+.titleBar {
+    background: #000000;
+    height: 32px;
+    color: #ffffff;
+}
+
+.fileName{
+    position: absolute;
+    top: 9px;
+    left: 100px;
+    /* font-weight: bold; */
+    z-index: 10;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.windowControls {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 0;
+}
+
+.windowControlButton {
+    border: none;
+    padding: 8.5px 14px;
+    background: #000000;
+}
+
+.mvleft {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.windowControlButtonsIcon {
+    height: 10px;
+    width: 10px;
+}
+
+.windowControlButton:hover {
+    background: #1b1835;
+}
+
+.cross:hover {
+    background: red;
+}
+
+.draggable {
+    -webkit-app-region: drag !important;
+    -webkit-user-select: none !important;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 101;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.486);
+}
+
+.modal-content {
+    color: #ffffff;
+    background-color: #003169;
+    margin: 10% auto;
+    padding: 30px 50px;
+    border-radius: 6px;
+    width: 40%;
+}
+
+.modal-content p{
+    font-size: 15px;
+}
+
+
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    margin-top: -10px;
+    margin-right: -15px;
+}
+
+.close:hover,
+.close:focus {
+    color: rgb(3, 255, 242);
+    text-decoration: none;
+    cursor: pointer;
+}

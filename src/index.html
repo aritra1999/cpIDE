@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Competitive Programing Code Editor</title>
+
+
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/titleBar.css">
+	<link rel="stylesheet" href="assets/css/codeEditor.css">
+	<link rel="stylesheet" href="assets/css/menu.css">
+	<link rel="stylesheet" href="assets/css/ace.css">
+	<link rel="stylesheet" href="assets/css/file.css">
+
+	<style type="text/css" media="screen">
+		#editor {
+			position: relative;
+			min-height: 96vh;
+			right: 0;
+			bottom: 0;
+		}
+	</style>
+	<script>
+	process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
+	const fs = require('fs');
+	const { dialog } = require('electron').remote;
+    const exec = require('child_process').exec;
+    
+    const ele = require('electron');
+    const app = ele.remote.app;
+
+    const userDataPath = app.getPath('userData');
+		
+		if (typeof module === 'object') {
+			window.module = module;
+			module = undefined;
+		}
+
+    var settingsFile = userDataPath + "/settings.json";
+    
+    if (!fs.existsSync(settingsFile)) {
+        var init_json_url = "https://raw.githubusercontent.com/aritra1999/CP-IDE/master/src/assets/demo/init.json";
+        fetch(init_json_url)
+        .then(response => response.json())
+        .then(data => {
+
+            fs.writeFile(settingsFile , JSON.stringify(data), (err) => { 
+                if (err) 
+                    console.log(err); 
+                else { 
+					console.log("Sucessfully created");
+					location.reload();
+                } 
+            }); 
+        });
+	}
+
+
+	</script>
+	<script src="assets/js/settings.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.menu.js"></script>
+</head>
+
+<body onload="on_startup()">
+	<div class="container">
+		<div class="topBar">
+			<div class="menu">
+				<span onclick="openNav()" class="menu">
+					<!-- <img src="assets/img/menu.svg" alt="Menu" class="menu"> -->
+					&#9776;
+				</span>
+
+				<div id="mySidenav" class="sidenav">
+
+					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+					<input type="button" id="newBtn" value="New">
+
+					<input type="button" id="openFileExp" value="Open">
+					<input type="file" style="display: none;" id="openBtn" onchange="open_file()">
+
+					<input type="button" id="saveAsBtn" value="Save File">
+
+					<!-- <input type="button" id="shortcutBtn" value="Edit Shortcuts" onclick="saveFile()" /> -->
+
+					<!-- <input type="button" value="Edit Snippets" readonly />
+
+					<input type="button" value="Add/Edit Templates" readonly /> -->
+
+					<input type="button" onclick="document.getElementById('settings').style.display='block'"
+						value="Settings" readonly />
+
+
+					<!-- <a href="#" onclick="document.getElementById('sys_info').style.display='block'">System Info</a> -->
+
+					<!-- <hr style="width: 90%;opacity: 30%;" align="center"> -->
+					<a href="#" class="info">Version 1.0</a>
+				</div>
+			</div>
+			<div class="titleBar draggable">
+				<div class="fileName" id="fileName">
+					Untitled *
+				</div>
+			</div>
+			<div class="windowControls">
+				<button id="minimize" class="windowControlButton mvleft">
+					<img src="assets/img/min_white.svg" class="windowControlButtonsIcon" alt="-">
+				</button>
+				<button id="maximize" class="windowControlButton mvleft">
+					<img src="assets/img/max_white.svg" class="windowControlButtonsIcon" alt="[]">
+				</button>
+				<button id="close" class="windowControlButton cross">
+					<img src="assets/img/cross_white.svg" class="windowControlButtonsIcon" alt="X">
+				</button>
+			</div>
+		</div>
+		<div class="codeEditor">
+			<div class="editorContainer">
+				<!-- <div class="activeFiles">
+					<li>
+						<div class="fileName activeFile">Untitled  0</div>
+						<span class="closeBtn">
+							<img src="assets/img/cross_white.svg" class="fileCloseBtn" alt="X">
+						</span>
+					</li>
+				</div> -->
+				<div id="editor"></div>
+			</div>
+			<div class="ioContainer">
+				<div>
+					<h3 class="ioHead">Input</h3>
+					<textarea name="input" id="input" class="io"></textarea>
+				</div>
+				<div>
+					<h3 class="ioHead">Output</h3>
+					<textarea name="input" id="output" class="io" readonly>Output</textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="tools" align="right">
+		<form action="">
+			<select class="language" id="language" name="language" onchange="language_changed(language)">
+				<option value="c_cpp" selected>C++</option>
+				<option value="c_cpp">C</option>
+				<option value="python">Python</option>
+				<option value="java">Java</option>
+			</select>
+		</form>
+		<button class="run-button" onclick="runfile()">
+			Run
+			<img src="assets/img/play.svg" alt=">" class="run">
+		</button>
+	</div>
+
+	<div class="modal_section">
+
+		<div id="sys_info" class="modal" style="display: none;">
+			<div class="modal-content">
+				<div>
+					<span onclick="document.getElementById('sys_info').style.display='none'"
+						class="close">&times;</span>
+					<h3>
+						System Info
+					</h3>
+					<hr>
+					<div class="sys_info_details">
+						<script>
+							document.write(navigator);
+						</script>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="settings" class="modal" style="display: none;">
+			<div class="modal-content" align="left">
+				<span onclick="document.getElementById('settings').style.display='none'"
+						class="close">&times;</span>
+				<div>
+					<h3>Set Theme</h3>
+					<select id="theme" class="setTheme" onchange="changeTheme()">
+						<optgroup label="Bright">
+							<option class="theme-option" value="chrome">Chrome</option>
+							<option class="theme-option" value="clouds">Clouds</option>
+							<option class="theme-option" value="crimson_editor">Crimson Editor</option>
+							<option class="theme-option" value="dawn">Dawn</option>
+							<option class="theme-option" value="dreamweaver">Dreamweaver</option>
+							<option class="theme-option" value="eclipse">Eclipse</option>
+							<option class="theme-option" value="github">GitHub</option>
+							<option class="theme-option" value="iplastic">IPlastic</option>
+							<option class="theme-option" value="solarized_light">Solarized Light</option>
+							<option class="theme-option" value="textmate">TextMate</option>
+							<option class="theme-option" value="tomorrow">Tomorrow</option>
+							<option class="theme-option" value="xcode">Xcode</option>
+							<option class="theme-option" value="kuroir">Kuroir</option>
+							<option class="theme-option" value="katzenmilch">KatzenMilch</option>
+							<option class="theme-option" value="sqlserver">SQL Server</option>
+						</optgroup>
+						<optgroup label="Dark">
+							<option class="theme-option" value="ambiance">Ambiance</option>
+							<option class="theme-option" value="chaos">Chaos</option>
+							<option class="theme-option" value="clouds_midnight">Clouds Midnight</option>
+							<option class="theme-option" value="dracula">Dracula</option>
+							<option class="theme-option" value="cobalt">Cobalt</option>
+							<option class="theme-option" value="gruvbox">Gruvbox</option>
+							<option class="theme-option" value="gob">Green on Black</option>
+							<option class="theme-option" value="idle_fingers">idle Fingers</option>
+							<option class="theme-option" value="kr_theme">krTheme</option>
+							<option class="theme-option" value="merbivore">Merbivore</option>
+							<option class="theme-option" value="merbivore_soft">Merbivore Soft</option>
+							<option class="theme-option" value="mono_industrial">Mono Industrial</option>
+							<option class="theme-option" value="monokai" selected>Monokai</option>
+							<option class="theme-option" value="nord_dark">Nord Dark</option>
+							<option class="theme-option" value="pastel_on_dark">Pastel on dark</option>
+							<option class="theme-option" value="solarized_dark">Solarized Dark</option>
+							<option class="theme-option" value="terminal">Terminal</option>
+							<option class="theme-option" value="tomorrow_night">Tomorrow Night</option>
+							<option class="theme-option" value="tomorrow_night_blue">Tomorrow Night Blue</option>
+							<option class="theme-option" value="tomorrow_night_bright">Tomorrow Night Bright</option>
+							<option class="theme-option" value="tomorrow_night_eighties">Tomorrow Night 80s</option>
+							<option class="theme-option" value="twilight">Twilight</option>
+							<option class="theme-option" value="vibrant_ink">Vibrant Ink</option>
+						</optgroup>
+					</select>
+				</div>
+				<div>
+					<h3>Settings</h3>
+					<form action="" method="POST" class="settingsForm">
+						<table>
+							<tr>
+								<td><label for="">Editor Font</label></td>
+								<td><input type="text" class="settingsInput" placeholder="" id="editor-font" /></td>
+							</tr>
+							<tr>
+								<td><label for="">IDE Font</label></td>
+								<td><input type="text" class="settingsInput" placeholder="" id="ide-font" /></td>
+							</tr>
+							<tr>
+								<td><label for="">Editor Font Size</label></td>
+								<td><input type="text" class="settingsInput" id="editor-font-size" /></td>
+							</tr>
+
+							<tr>
+								<td><input type="button" value="Apply" class="settingsSubmitBtn" onclick="changeSettings()"></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="assets/js/script.js"></script>
+	<script src="assets/js/titleBar.js"></script>
+	<script src="assets/js/file.js"></script>
+	<script src="assets/js/run.js"></script>
+	<script src="assets/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+	<script src="assets/js/ace/ext-language_tools.js"></script>
+	<script>
+		// Editor config
+		ace.require("ace/ext/language_tools");
+		var editor = ace.edit("editor");
+
+		const fileName = settingsFile;
+		const settings_data = require(fileName);
+		
+		var editor_font_family = settings_data.editor_font_family;
+    	var editor_font_size = settings_data.editor_font_size;
+
+		editor.setOptions({
+			enableBasicAutocompletion: true,
+			enableSnippets: true,
+			enableLiveAutocompletion: true,
+		});
+
+
+		$(function () {
+			var editor;
+			$('.ace_editor').each(function (index) {
+				editor = ace.edit(this);
+				editor.setFontSize(editor_font_size + 'px');
+				editor.setOptions({
+					fontFamily: editor_font_family,
+				});
+			});
+
+		})
+	</script>
+
+</body>
+
+</html>

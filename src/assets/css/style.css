@@ -1,0 +1,29 @@
+@import url('mont.css');
+body, html{
+    font-family: 'Montserrat', sans-serif !important;
+    background: #000;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+hr{
+    border: 0.5px solid #83838326 !important;
+    width: 98;
+}
+
+::-webkit-scrollbar {
+    /* width: 100px; */
+}
+  
+
+input:focus,
+select:focus,
+a:focus,
+textarea:focus,
+button:focus {
+    outline: none !important;
+}
+

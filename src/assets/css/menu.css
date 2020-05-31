@@ -1,0 +1,124 @@
+.menu {
+    color: #f1f1f1;
+    cursor: pointer;
+    margin: auto 10px;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.closebtn{
+    padding: 12px !important;
+    margin-right: 10px;
+    
+}
+
+.sidenav input, .sidenav a {
+    padding: 8px 12px 12px 32px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    border: none;
+    text-align: left;
+    background-color: transparent;
+    display: block;
+    max-width: 80% !important;
+    transition: 0.3s;
+}
+
+.sidenav input{
+    width: 220px;
+}
+
+#my_file {
+    display: none;
+}
+
+.sidenav a:hover , .sidenav input:hover{
+    color: #f1f1f1;
+    background-color: #1d1d1d;
+}
+.closebtn:hover{
+    background-color: #111 !important;
+}
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.info{
+    color: #ffffff !important;
+    font-size: 13px !important;
+    bottom: 10px;
+    vertical-align: baseline !important;
+    left: 10px;
+}
+
+.setTheme, .settingsInput{
+    width: 200px !important;
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Montserrat', sans-serif !important;
+    border-radius: 3px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+.theme-option{
+    border: none !important;
+}
+
+.settingsSubmitBtn{
+    padding: 10px 20px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 15px 35px;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 3px;
+    margin-left: 30px;
+}
+
+.settingsForm label{
+    font-size: 15px !important;
+    margin-left: 30px;
+}
+
+.settingsInput{
+    font-weight: bold;
+}
+
+.theme-option:hover{
+    background-color: #3a3a3a !important;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
