@@ -1,4 +1,7 @@
 function runfile(){
+
+    active_file_path = settings_data.active_file_path;
+
     var editor = ace.edit('editor');
     var code = editor.getSession().getValue()
     var input = document.getElementById('input').value;
@@ -14,23 +17,19 @@ function runfile(){
     }
     
     // Saving input in input file
+    log("Writing input to file...");    
     fs.writeFile( abs_path + 'input.in', input, (err)=>{
         if (err) console.log(err);
     })
 
-
-    // Saving Input final name
-    var fileName = settingsFile;
-    var settings_data = require(fileName);
-
+    log("Updating input file name in settings.json");
     settings_data.last_input = abs_path + 'input.in';
 
-    fs.writeFile(fileName, JSON.stringify(settings_data), function writeJSON(err) {
+    fs.writeFile(settingsFile, JSON.stringify(settings_data), function writeJSON(err) {
         if (err) return console.log(err);
     });
 
-    
-    // Set file ext anf exection command bassed on OS and language
+
     switch(language){
         case "c_cpp":   ext = "cpp";
                         if(OS.toLowerCase().includes("win")){ 
@@ -47,6 +46,7 @@ function runfile(){
                         break;
     }
     console.log(exec_command);
+    
     // Check if file extension and
     if(get_ext(active_file_path) != ext){
         alert("Your language does not match with your file extension.");

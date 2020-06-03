@@ -10,15 +10,13 @@ close.addEventListener("click", closeApp);
 
 
 function minimizeApp(){
-    console.log("Minimize");
+    log("Minimizing editor.");
     remote.BrowserWindow.getFocusedWindow().minimize();
 }
 
 function maximizeApp(){
-    
+    log("Maximizing editor.");
     if(window.screen.width - remote.getCurrentWindow().getSize()[0] < 50 && window.screen.height - remote.getCurrentWindow().getSize()[1] < 33){        
-        // remote.BrowserWindow.getFocusedWindow().setSize(700, 900);
-        // console.log("Here");
         remote.BrowserWindow.getFocusedWindow().maximize();
     }else{
         remote.BrowserWindow.getFocusedWindow().maximize();
@@ -28,7 +26,9 @@ function maximizeApp(){
 }   
 
 function closeApp(){
-    console.log("Close");
+    log("Closing editor.");
+    var active_file_path = settings_data.active_file_path;
+
     if(active_file_path === undefined || active_file_path == "Untitled"){
         save_alert();
     }else{

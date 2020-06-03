@@ -48,26 +48,32 @@ function save_alert(){
 
 // On startup
 function on_startup(){
-    const fileName = settingsFile;
-    const settings_data = require(fileName);
+
+    log("Startup.")
 
     var file_path = settings_data.active_file_path;
     var ext = get_ext(file_path);
     var last_input = settings_data.last_input;
-    var activeTheme = settings_data.activeTheme;
-    var editor_font_family = settings_data.editor_font_family;
-    var editor_font_size = settings_data.editor_font_size;
-    var ide_font_family = settings_data.ide_font_family;
-    
-    editor.setTheme("ace/theme/" + activeTheme);
+
+    editor.setTheme("ace/theme/" + settings_data.activeTheme);
     editor.session.setMode("ace/mode/c_cpp");
 
-    document.getElementById("editor-font").value = editor_font_family;
-    document.getElementById("ide-font").value = ide_font_family;
-    document.getElementById("editor-font-size").value = editor_font_size;
+    log("Pulling and applying cached settings...")
 
+    document.getElementById("editor-font").value = settings_data.editor_font_family;
+    document.getElementById("ide-font").value = settings_data.ide_font_family;
+    document.getElementById("editor-font-size").value = settings_data.editor_font_size;
+    document.getElementById("theme").value = settings_data.activeTheme;
 
-    if(last_input != "" && last_input != undefined){
+    log("Pulling and setting last input file...")
+
+    if(last_input == "" || last_input == undefined){
+        
+        document.getElementById("input").innerHTML = ""; 
+        log("Input file not found!");
+        log("Setting input data to NULL");
+
+    }else{
         fs.readFile(last_input, function(err, input){
             if(err){
                 console.log(err);
@@ -76,6 +82,8 @@ function on_startup(){
             document.getElementById("input").innerHTML = input; 
         })
     }
+
+    log("Pulling and setting last code...");
 
     if(file_path != "Untitled *" && file_path != undefined){    
         fs.readFile(file_path, function(err, code){
@@ -90,10 +98,19 @@ function on_startup(){
             editor.clearSelection();
             editor.session.setMode("ace/mode/"+mode);
 
-            active_file_path = file_path;
-            document.getElementById("fileName").innerHTML = file_path;
+            document.getElementById("fileName").innerHTML = settings_data.active_file_path;
             document.getElementById("language").value = mode;                    
             
         })
+    }else{
+        log("Source file not found!");
+        log("Setting editor code to NULL");
+
+        var code = "";
+        editor.setValue(code.toString());
     }
+}
+
+function log(message){
+    console.log("[ LOG ] " + message);
 }

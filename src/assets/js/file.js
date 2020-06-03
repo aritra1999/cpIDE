@@ -2,8 +2,6 @@ const newBtn = document.getElementById('newBtn');
 const openFileExp = document.getElementById('openFileExp');
 const saveAsBtn = document.getElementById('saveAsBtn');
 
-var active_file_path = "Untitled";
-
 // Creating a new file
 newBtn.addEventListener('click', newFile);
 function newFile(){
@@ -19,16 +17,15 @@ function newFile(){
                     console.log(err);
                     return; 
                 }
-            
-                active_file_path = file_name;
+                closeNav();
+
                 update_file_path(file_name);
                 document.getElementById("fileName").innerHTML = file_name;
-                
-                closeNav();
+
                 var mode = get_mode(ext);
                 editor.session.setMode("ace/mode/"+mode);
-                document.getElementById("language").value = mode;                    
-            
+                document.getElementById("language").value = mode;  
+                
             })
         }else{
             alert("File type not supported");
@@ -56,16 +53,16 @@ function open_file(){
         }
         
         var mode = get_mode(ext);
+        
         update_file_path(file_path);
+
         editor.setValue(code.toString());
         editor.clearSelection();
         editor.session.setMode("ace/mode/"+mode);
 
-        active_file_path = file_path;
         document.getElementById("fileName").innerHTML = file_path;
         document.getElementById("language").value = mode;                    
     
-
     })
 }
 
@@ -83,7 +80,6 @@ function saveFile(){
                 console.log(err);
         })
 
-        active_file_path = file_name;
         document.getElementById("fileName").innerHTML = active_file_path;
     })
 }   

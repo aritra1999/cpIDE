@@ -24,28 +24,34 @@
 		}
 	</style>
 	<script>
+	
 	process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
+	
 	const fs = require('fs');
 	const { dialog } = require('electron').remote;
     const exec = require('child_process').exec;
-    
     const ele = require('electron');
     const app = ele.remote.app;
-
     const userDataPath = app.getPath('userData');
 		
-		if (typeof module === 'object') {
-			window.module = module;
-			module = undefined;
-		}
+	if (typeof module === 'object') {
+		window.module = module;
+		module = undefined;
+	}
 
-    var settingsFile = userDataPath + "/settings.json";
+	var settingsFile = userDataPath + "/settings.json";
+	const settings_data = require(settingsFile);
     
     if (!fs.existsSync(settingsFile)) {
+		
+		log("Settings file missing!")
+
         var init_json_url = "https://raw.githubusercontent.com/aritra1999/CP-IDE/master/src/assets/demo/init.json";
         fetch(init_json_url)
         .then(response => response.json())
         .then(data => {
+			
+			log("Getting setings file...");
 
             fs.writeFile(settingsFile , JSON.stringify(data), (err) => { 
                 if (err) 
@@ -57,7 +63,6 @@
             }); 
         });
 	}
-
 
 	</script>
 	<script src="assets/js/settings.js"></script>
@@ -214,7 +219,7 @@
 							<option class="theme-option" value="merbivore">Merbivore</option>
 							<option class="theme-option" value="merbivore_soft">Merbivore Soft</option>
 							<option class="theme-option" value="mono_industrial">Mono Industrial</option>
-							<option class="theme-option" value="monokai" selected>Monokai</option>
+							<option class="theme-option" value="monokai">Monokai</option>
 							<option class="theme-option" value="nord_dark">Nord Dark</option>
 							<option class="theme-option" value="pastel_on_dark">Pastel on dark</option>
 							<option class="theme-option" value="solarized_dark">Solarized Dark</option>
@@ -265,9 +270,7 @@
 		ace.require("ace/ext/language_tools");
 		var editor = ace.edit("editor");
 
-		const fileName = settingsFile;
-		const settings_data = require(fileName);
-		
+
 		var editor_font_family = settings_data.editor_font_family;
     	var editor_font_size = settings_data.editor_font_size;
 
