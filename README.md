@@ -28,6 +28,5 @@ A lightweight cross-platform code editor with advanced features built for compet
 
 ### License
 
-MIT License
-Copyright (c) Aritra Mondal
+MIT License | Copyright (c) Aritra Mondal <br>
 [Full license](LICENSE.md)
