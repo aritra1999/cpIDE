@@ -1,4 +1,4 @@
-## CPIDE
+## CPIDE <sub><sup>(BETA)</sub></sup>
 A lightweight cross-platform code editor with advanced features built for competitive programmers.
 
 - [Download For Linux | Deb](https://media.githubusercontent.com/media/aritra1999/CP-IDE/master/out/make/deb/x64/cpide_1.0.0_amd64.deb) | x64 
