@@ -5,5 +5,12 @@
     "activeTheme": "monokai",
     "editor_font_size": "15",
     "editor_font_family": "Source Code Pro",
-    "ide_font_family": " 'Montserrat', sans-serif"
+    "ide_font_family": " 'Montserrat', sans-serif",
+    "shortcuts":{
+        "run": "r",
+        "close": "x",
+        "open": "o",
+        "save":"s",
+        "create_new": "n"
+    }
 }

@@ -17,12 +17,22 @@ A light weight crossplatform code editor with advanced features built for compet
 ### Features
 - Live autocomplete 
 - 39 Themes
-- 
+- Find and replace.
 
 ### Future featres
 - Add your own templates 
 - Question preview from the code editor.
 
+### Default Shortcuts
+
+| Command  | Shrotcut (Ctrl + ) |
+|---|---|
+| Save | s |
+| Run  | Enter |
+| Open  | o |
+| Close | x |
+| Find | f |
+| Replace | h | 
 
 ### License
 

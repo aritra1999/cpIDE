@@ -113,5 +113,8 @@ function on_startup(){
 }
 
 function log(message){
-    console.log("[ LOG ] " + message);
+    var date = new Date();
+    var utcDate = date.toUTCString();
+
+    console.log("[ LOG | " + utcDate + " ] " + message);
 }
