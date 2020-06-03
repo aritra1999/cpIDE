@@ -1,10 +1,10 @@
 ## CPIDE
-A light weight crossplatform code editor with advanced features built for competitve programmers.
+A lightweight cross-platform code editor with advanced features built for competitive programmers.
 
 - [Download For Linux | Deb](https://media.githubusercontent.com/media/aritra1999/CP-IDE/master/out/make/deb/x64/cpide_1.0.0_amd64.deb) | x64 
 - [Download For Linux | Rpm](https://media.githubusercontent.com/media/aritra1999/CP-IDE/master/out/make/deb/x64/cpide_1.0.0_amd64.rpm) | x64 
 - <a href="https://media.githubusercontent.com/media/aritra1999/CP-IDE/master/out/make/squirrel.windows/x64/cpide-1.0.0 Setup.exe">Download For Windows</a> | x64
-- [Download For Mac | x64]()
+- [Download For MacOS](#) | x64
 
 ![demo](src/assets/demo/demo.png)
 
@@ -17,17 +17,17 @@ A light weight crossplatform code editor with advanced features built for compet
 ### Features
 - Live autocomplete 
 - 39 Themes
-- 
+- Efficient workflow
 
-### Future featres
-- Add your own templates 
+### Future features
+- Add your own code templates.
 - Question preview from the code editor.
-
+- Selecting your own input files. 
+- Shortcuts for an efficient workflow. 
+- Improved design.
 
 ### License
 
 MIT License
-
 Copyright (c) Aritra Mondal
-
 [Full license](LICENSE.md)
