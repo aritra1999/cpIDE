@@ -14,13 +14,14 @@ function get_mode(ext){
 }
 
 function getPathFromName(path){ 
-    var paths = path.split("\\");
-    var abs_path = "";
 
     var dir = "";
     if(navigator.platform.includes("Win") || navigator.platform.includes("win"))
         dir = "\\";
     else dir = "/";
+
+    var paths = path.split(dir);
+    var abs_path = "";
 
     for(var i=0;i<paths.length-1;i++){
         abs_path += (paths[i] + dir);

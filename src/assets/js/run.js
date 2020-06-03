@@ -1,6 +1,6 @@
 function runfile(){
 
-    active_file_path = settings_data.active_file_path;
+    var active_file_path = settings_data.active_file_path;
 
     var editor = ace.edit('editor');
     var code = editor.getSession().getValue()
@@ -18,6 +18,9 @@ function runfile(){
     
     // Saving input in input file
     log("Writing input to file...");    
+    
+    console.log(abs_path);
+    
     fs.writeFile( abs_path + 'input.in', input, (err)=>{
         if (err) console.log(err);
     })
@@ -45,7 +48,7 @@ function runfile(){
                         exec_command = 'java "' + active_file_path + '" <"' + abs_path + 'input.in"> "' + abs_path + 'output.out"';
                         break;
     }
-    console.log(exec_command);
+    log("Command: ", exec_command);
     
     // Check if file extension and
     if(get_ext(active_file_path) != ext){
