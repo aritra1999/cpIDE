@@ -1,7 +1,7 @@
 ## CPIDE <sub><sup>(BETA)</sub></sup>
 A lightweight cross-platform code editor with advanced features built for competitive programmers.
 
-### Download
+### 💻 Download 
 
 | Platform   | Download Link |
 |:-------------------:|:-----------------:|
@@ -13,26 +13,26 @@ A lightweight cross-platform code editor with advanced features built for compet
 
 ![demo](src/assets/demo/demo.png)
 
-### Supported Languages
-- C++
-- C
-- Python 
-- Java
+###  Supported Languages 
+🔥 C++ <br>
+🌈 C <br>
+☔ Python <br> 
+🌊 Java <br>
   
-### Features
-- Live autocomplete 
-- 39 Themes
-- Find and replace.
-- Efficient workflow
+### 🔮 Features
+🧱 Live autocomplete 
+🧪 39 Themes
+🔪 Find and replace.
+🧲 Efficient workflow
 
-### Future features
-- Add your own code templates.
-- Question preview from the code editor.
-- Selecting your own input files. 
-- Shortcuts for an efficient workflow. 
-- Improved design.
+### 📆 Future features 
+📌 Add your own code templates. <br>
+📌 Question preview from the code editor. <br>
+📌 Selecting your own input files. <br>
+📌 Shortcuts for an efficient workflow. <br>
+📌 Improved design. <br>
 
-### Default Shortcuts
+### 🎮 Default Shortcuts
 
 | Command  | Shrotcut (Ctrl + ) |
 |---|---|
@@ -43,11 +43,11 @@ A lightweight cross-platform code editor with advanced features built for compet
 | Find | f |
 | Replace | h | 
 
-### License
+### 📁 License
 
 MIT License | Copyright (c) Aritra Mondal <br>
 [Full license](LICENSE.md)
 
-### Credits 
+### 🎁 Credits 
 - [Ace](https://ace.c9.io/)
 - [Electron](https://www.electronjs.org/)
