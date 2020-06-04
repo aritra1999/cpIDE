@@ -3,7 +3,9 @@ A lightweight cross-platform code editor with advanced features built for compet
 
 - [Download For Linux | Deb](https://media.githubusercontent.com/media/aritra1999/CP-IDE/master/out/make/deb/x64/cpide_1.0.0_amd64.deb) | x64 
 - [Download For Linux | Rpm](https://media.githubusercontent.com/media/aritra1999/CP-IDE/master/out/make/deb/x64/cpide_1.0.0_amd64.rpm) | x64 
-- <a href="https://media.githubusercontent.com/media/aritra1999/CP-IDE/master/out/make/squirrel.windows/x64/cpide-1.0.0 Setup.exe">Download For Windows</a> | x64
+- <a href="https://media.githubusercontent.com/media/aritra1999/CP-IDE/master/out/make/squirrel.windows/x64/cpide-1.0.0 Setup.exe">Download For Window | Exe</a> | x64
+- <a href="https://media.githubusercontent.com/media/aritra1999/CP-IDE/master/out/make/squirrel.windows/x64/cpide-1.0.0-full.nupkg">Download For Window | Nuget Package</a> | x64
+
 - [Download For MacOS](#) | x64
 
 ![demo](src/assets/demo/demo.png)
