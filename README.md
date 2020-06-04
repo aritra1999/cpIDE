@@ -17,16 +17,15 @@ A lightweight cross-platform code editor with advanced features built for compet
 ### Features
 - Live autocomplete 
 - 39 Themes
-<<<<<<< HEAD
 - Find and replace.
-=======
 - Efficient workflow
->>>>>>> 0f239c6a81f05bf1e07b4499b6738af818bfb80c
 
 ### Future features
 - Add your own code templates.
 - Question preview from the code editor.
-<<<<<<< HEAD
+- Selecting your own input files. 
+- Shortcuts for an efficient workflow. 
+- Improved design.
 
 ### Default Shortcuts
 
@@ -38,13 +37,12 @@ A lightweight cross-platform code editor with advanced features built for compet
 | Close | x |
 | Find | f |
 | Replace | h | 
-=======
-- Selecting your own input files. 
-- Shortcuts for an efficient workflow. 
-- Improved design.
->>>>>>> 0f239c6a81f05bf1e07b4499b6738af818bfb80c
 
 ### License
 
 MIT License | Copyright (c) Aritra Mondal <br>
 [Full license](LICENSE.md)
+
+### Credits 
+- [Ace](https://ace.c9.io/)
+- [Electron](https://www.electronjs.org/)
