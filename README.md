@@ -1,7 +1,16 @@
-## CPIDE <sub><sup>(BETA)</sub></sup>
+# CPIDE <sub><sup>(BETA)</sub></sup>
 A lightweight cross-platform code editor with advanced features built for competitive programmers.
 
-### 💻 Download 
+## Containts
+- [Download](https://github.com/aritra1999/CP-IDE#-download)
+- [Supported Languages](https://github.com/aritra1999/CP-IDE#supported-languages)
+- [Features](https://github.com/aritra1999/CP-IDE#supported-languages)
+- [Future features](https://github.com/aritra1999/CP-IDE#-future-features)
+- [Default Shortcuts](https://github.com/aritra1999/CP-IDE#-default-shortcuts)
+- [License](https://github.com/aritra1999/CP-IDE#-license)
+- [Credits](https://github.com/aritra1999/CP-IDE#-credits)
+
+## 💻 Download 
 
 | Platform   | Download Link |
 |:-------------------:|:-----------------:|
@@ -13,26 +22,26 @@ A lightweight cross-platform code editor with advanced features built for compet
 
 ![demo](src/assets/demo/demo.png)
 
-###  Supported Languages 
+##  Supported Languages 
 🔥 C++ <br>
 🌈 C <br>
 ☔ Python <br> 
 🌊 Java <br>
   
-### 🔮 Features
-🧱 Live autocomplete 
-🧪 39 Themes
-🔪 Find and replace.
-🧲 Efficient workflow
+## 🔮 Features
+🧱 Live autocomplete <br>
+🧪 39 Themes. <br>
+🔪 Find and replace. <br>
+🧲 Efficient workflow. <br>
 
-### 📆 Future features 
+## 📆 Future features 
 📌 Add your own code templates. <br>
 📌 Question preview from the code editor. <br>
 📌 Selecting your own input files. <br>
 📌 Shortcuts for an efficient workflow. <br>
 📌 Improved design. <br>
 
-### 🎮 Default Shortcuts
+## 🎮 Default Shortcuts
 
 | Command  | Shrotcut (Ctrl + ) |
 |---|---|
@@ -43,11 +52,11 @@ A lightweight cross-platform code editor with advanced features built for compet
 | Find | f |
 | Replace | h | 
 
-### 📁 License
+## 📁 License
 
 MIT License | Copyright (c) Aritra Mondal <br>
 [Full license](LICENSE.md)
 
-### 🎁 Credits 
+## 🎁 Credits 
 - [Ace](https://ace.c9.io/)
 - [Electron](https://www.electronjs.org/)
