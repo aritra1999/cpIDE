@@ -89,3 +89,5 @@ typings/
 out/cpide-linux-x64
 out/cpide-win32-x64
 out\cpide-win32-x64
+
+automate_git.py
