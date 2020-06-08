@@ -56,6 +56,7 @@ function on_startup(){
     var ext = get_ext(file_path);
     var last_input = settings_data.last_input;
 
+
     editor.setTheme("ace/theme/" + settings_data.activeTheme);
     editor.session.setMode("ace/mode/c_cpp");
 
@@ -100,7 +101,7 @@ function on_startup(){
             editor.session.setMode("ace/mode/"+mode);
 
             document.getElementById("fileName").innerHTML = settings_data.active_file_path;
-            document.getElementById("language").value = mode;                    
+            document.getElementById("language").value = ext;                    
             
         })
     }else{

@@ -62,8 +62,10 @@ function open_file(){
 
         document.getElementById("fileName").innerHTML = file_path;
         document.getElementById("language").value = mode;                    
-    
+        
     })
+
+    location.reload();
 }
 
 // Saving as file
@@ -80,7 +82,7 @@ function saveFile(){
                 console.log(err);
         })
 
-        document.getElementById("fileName").innerHTML = active_file_path;
+        document.getElementById("fileName").innerHTML = file_name;
     })
 }   
 

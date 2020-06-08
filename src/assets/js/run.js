@@ -10,6 +10,19 @@ function runfile(){
     var exec_command = ext = "";
     var abs_path = getPathFromName(active_file_path);
 
+
+
+    
+    var sys = require('sys')
+    var exec = require('child_process').exec;
+    
+    exec("pwd", function puts(error, stdout, stderr) { 
+        console.log("Out: ", stdout) 
+    });
+
+
+
+
     // Check if code is saved or not
     if(active_file_path == "Untitled" || active_file_path === undefined){
         saveFile();
@@ -18,8 +31,6 @@ function runfile(){
     
     // Saving input in input file
     log("Writing input to file...");    
-    
-    console.log(abs_path);
     
     fs.writeFile( abs_path + 'input.in', input, (err)=>{
         if (err) console.log(err);
@@ -32,13 +43,19 @@ function runfile(){
         if (err) return console.log(err);
     });
 
-
     switch(language){
-        case "c_cpp":   ext = "cpp";
+        case "cpp":     ext = "cpp";
                         if(OS.toLowerCase().includes("win")){ 
                             exec_command = 'g++ "' + active_file_path + '" -o "' + abs_path + 'a.exe" && "' + abs_path + 'a.exe" <"' + abs_path + 'input.in"> "' + abs_path + 'output.out"';
                         }else{
                             exec_command = 'g++ "' + active_file_path + '" -o "' + abs_path + 'a.out" && ./"' + abs_path + 'a.out" <"' + abs_path + 'input.in"> "' + abs_path + 'output.out"';
+                        }
+                        break;
+        case "c":       ext = "c";
+                        if(OS.toLowerCase().includes("win")){ 
+                            exec_command = 'gcc "' + active_file_path + '" -o "' + abs_path + 'a.exe" && "' + abs_path + 'a.exe" <"' + abs_path + 'input.in"> "' + abs_path + 'output.out"';
+                        }else{
+                            exec_command = 'gcc "' + active_file_path + '" -o "' + abs_path + 'a.out" && ./"' + abs_path + 'a.out" <"' + abs_path + 'input.in"> "' + abs_path + 'output.out"';
                         }
                         break;
         case "python":  ext = "py";
@@ -48,8 +65,7 @@ function runfile(){
                         exec_command = 'java "' + active_file_path + '" <"' + abs_path + 'input.in"> "' + abs_path + 'output.out"';
                         break;
     }
-    log("Command: ", exec_command);
-    
+    log("Command: " + exec_command);
     // Check if file extension and
     if(get_ext(active_file_path) != ext){
         alert("Your language does not match with your file extension.");
@@ -64,12 +80,11 @@ function runfile(){
 
     //Execute and run
     document.getElementById('output').value = "Running...";
+
     exec(exec_command, function (error, stdOut, stdErr) {
-        
         if (error) {    
             if (error.toString().includes("-linux-gnu/Scrt1.o: In function `_start':")){
-                runfile();
-                
+                runfile();    
             }else{
                 error = error.toString().replace(exec_command, "");
                 error = error.toString().replace("Error: Command failed:", "");
@@ -78,7 +93,6 @@ function runfile(){
         } else {
             
             var output_file_path = abs_path + 'output.out';
-
             fs.readFile(output_file_path, 'utf-8', (err, data) => {
                 if(err){
                     console.log("An error ocurred reading the file :" + err.message);
