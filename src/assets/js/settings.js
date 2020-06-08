@@ -41,7 +41,6 @@ function changeSettings(){
 
     fs.writeFile(settingsFile, JSON.stringify(settings_data), function writeJSON(err) {
         if (err) return console.log(err);
-
     });
 
     location.reload();

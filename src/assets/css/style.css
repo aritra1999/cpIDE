@@ -1,6 +1,9 @@
-@import url('mont.css');
+@font-face { 
+    font-family: 'Mont';
+    src: url('../fonts/Montserrat-Regular.woff') format('woff');
+}
 body, html{
-    font-family: 'Montserrat', sans-serif !important;
+    font-family: Mont;
     background: #000;
     margin: 0;
     padding: 0;

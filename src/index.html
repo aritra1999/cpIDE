@@ -18,10 +18,15 @@
 	<style type="text/css" media="screen">
 		#editor {
 			position: relative;
-			min-height: 96vh;
+			min-height: 96vh; 
 			right: 0;
 			bottom: 0;
 		}
+		@font-face { 
+			font-family: 'Source Code Pro';
+			src: url('assets/fonts/SourceCodePro-Regular.woff') format('woff');
+		}
+		
 	</style>
 	<script>
 	
@@ -154,8 +159,8 @@
 	<div class="tools" align="right">
 		<form action="">
 			<select class="language" id="language" name="language" onchange="language_changed(language)">
-				<option value="c_cpp" selected>C++</option>
-				<option value="c_cpp">C</option>
+				<option value="cpp" selected>C++</option>
+				<option value="c">C</option>
 				<option value="python">Python</option>
 				<option value="java">Java</option>
 			</select>
@@ -242,7 +247,7 @@
 						<table>
 							<tr>
 								<td><label for="">Editor Font</label></td>
-								<td><input type="text" class="settingsInput" placeholder="" id="editor-font" /></td>
+								<td><input type="text" class="settingsInput" placeholder="" id="editor-font" disabled/></td>
 							</tr>
 							<tr>
 								<td><label for="">IDE Font</label></td>
@@ -274,7 +279,6 @@
 		ace.require("ace/ext/language_tools");
 		var editor = ace.edit("editor");
 
-
 		var editor_font_family = settings_data.editor_font_family;
     	var editor_font_size = settings_data.editor_font_size;
 
@@ -292,6 +296,7 @@
 				editor.setFontSize(editor_font_size + 'px');
 				editor.setOptions({
 					fontFamily: editor_font_family,
+					
 				});
 			});
 
