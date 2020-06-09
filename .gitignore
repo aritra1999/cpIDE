@@ -87,6 +87,7 @@ typings/
 
 # Electron-Forge
 out/
+out
 out\\
 
 automate_git.py
