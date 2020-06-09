@@ -86,8 +86,7 @@ typings/
 .webpack/
 
 # Electron-Forge
-out/cpide-linux-x64
-out/cpide-win32-x64
-out\cpide-win32-x64
+out/
+out\\
 
 automate_git.py
